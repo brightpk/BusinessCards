@@ -1,0 +1,27 @@
+.close {
+  width: 10px;
+  height: 10px;
+  margin-right: .5em;
+}
+
+.business-card-form {
+  display: flex;
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.add-button {
+  width: 320px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+#user-image {
+  width: 150px; 
+  height:150px; 
+  margin: 15px;
+  margin-top: 25px;
+}

@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  /* font-family: proxima-nova-sc,"Helvetica Neue",Helvetica,Arial,sans-serif; */
+  font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+label {
+  font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: bold;
+}
+
+.card-title {
+  font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: bold;
+}

@@ -1,8 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './auth-guard/auth.guard';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { BusinessCardsComponent } from './business-cards/business-cards.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NewBusinessCardComponent } from './new-business-card/new-business-card.component';
 
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'profile', component: ProfileComponent, canActivate: [ AuthGuard ]},
+  { path: 'businesscards', component: DashboardComponent, canActivate: [ AuthGuard ]},
+  { path: 'new-businesscard', component: NewBusinessCardComponent, canActivate: [ AuthGuard ]}
 
-const routes: Routes = [];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

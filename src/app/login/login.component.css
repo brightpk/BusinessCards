@@ -1,0 +1,6 @@
+.login-form {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+  margin-top: 100px;
+}

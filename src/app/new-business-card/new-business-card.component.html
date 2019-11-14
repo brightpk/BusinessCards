@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-md-5 ml-3 mt-2">
+    <h3>Add a new business card</h3>
+
+    <form [formGroup]="businessCardForm" (ngSubmit)="add()">
+      <div class="card mt-4" style="max-width: 500px;">
+        <h5 class="text-success mt-2 ml-2">Business card info</h5>
+
+        <div class="form-group business-card-form mt-3">
+          <div class="firstname-form pr-3">
+            <label class="control-label text-success" for="firstname">Firstname</label>
+            <input class="form-control mr-2" placeholder="firstname" formControlName="firstname">
+          </div>
+          <div class="lastname-form">
+            <label class="control-label text-success" for="lastname">Lastname</label>
+            <input class="form-control" placeholder="lastname" formControlName="lastname">
+          </div>
+        </div>
+
+        <div class="form-group business-card-form">
+          <div class="email-form pr-3">
+            <label class="control-label text-success" for="email">Email </label>
+            <input class="form-control mr-2" placeholder="email" formControlName="email">
+          </div>
+          <div class="phone-form">
+            <label class="control-label text-success" for="phoneNumber">Phone Number</label>
+            <input class="form-control" placeholder="phone number" formControlName="phoneNumber">
+          </div>
+        </div>
+
+        <!-- <div class="form-group business-card-form">
+          <div style="width: 305px;">
+            <label class="control-label text-success" for="image">Image </label>
+            <input class="form-control mr-2" placeholder="image" formControlName="image">
+          </div>
+          <div class="formgroup" style="margin-top: 32px; margin-left: 10px;">
+            <button class="btn btn-outline-success">Snapshot</button>
+          </div>
+        </div> -->
+
+        <div>
+          <button class="btn btn-success add-button">
+            <i class="fa fa-plus"></i>
+            &nbsp; Add
+          </button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+  <div class="col-sm-5" style="margin-top: 60px;">
+      <!-- Take a snapshot -->
+      <div class="form-group snapshot-form">
+          <div style="width: 305px;">
+            <label class="control-label text-success" for="image">Image </label>
+            <input class="form-control mr-2" placeholder="image" formControlName="image">
+          </div>
+          <div class="formgroup" style="margin-top: 32px; margin-left: 10px;">
+            <button class="btn btn-outline-success">Snapshot</button>
+          </div>
+        </div>
+
+      <div class="card" style="max-width: 500px; height: 237px; margin-top: 10px">
+          <div class="row">
+            <div class="col-sm-4">
+              <span *ngIf="this.businessCardForm.value.image==''; else useRealImage">
+                <img src="/assets/images/user.png" id="user-image" style="border: solid 1px lightgray;">
+              </span>
+              <ng-template #useRealImage>
+                <img src="{{businessCardForm.value.image}}" id="user-image">
+              </ng-template>
+            </div>
+            <div class="col-sm-7 mt-5 mr-3 ml-3">
+              <h5>{{businessCardForm.value.firstname}} {{businessCardForm.value.lastname}}</h5>
+              <h5>{{businessCardForm.value.email}}</h5>
+              <h5>{{businessCardForm.value.phoneNumber}}</h5>
+            </div>
+          </div>
+        </div>
+  </div>
+
+</div>

@@ -1,0 +1,98 @@
+<table class="table table-hover">
+  <tr>
+    <th>#</th>
+    <th>Business Card</th>
+    <th>Image</th>
+    <th>Options</th>
+  </tr>
+
+  <tr *ngFor="let card of businessCards; let i = index" [attr.data-index]="i">
+    <td>{{i + 1}}</td>
+    <td>
+      <div class="card" style="max-width: 400px;">
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="{{card.image}}" alt="image" style="width: 100px; height:100px; margin:10px;">
+          </div>
+          <div class="col-sm-5 mt-3">
+            <h6>{{card.firstname}} {{card.lastname}}</h6>
+            <h6>{{card.email}}</h6>
+            <h6>{{card.phoneNumber}}</h6>
+          </div>
+        </div>
+      </div>
+    </td>
+    <td>
+        <div class="card" style="max-width: 400px; height: 122px;">
+          <!-- <div class="row">
+            <div class="col-sm-4">
+              <img src="{{card.image}}" alt="image" style="width: 100px; height:100px; margin:10px;">
+            </div>
+            <div class="col-sm-5 mt-3">
+              <h6>{{card.firstname}} {{card.lastname}}</h6>
+              <h6>{{card.email}}</h6>
+              <h6>{{card.phoneNumber}}</h6>
+            </div>
+          </div> -->
+        </div>
+      </td>
+    <td>
+      <button class="btn btn-success mr-2" (click)="openEditForm(this.card)">
+        <i class="fa fa-edit"></i>
+        Edit
+      </button>
+      <button class="btn btn-danger mr-2">
+        <i class="fa fa-remove"></i>
+        Remove
+      </button>
+    </td>
+
+    <span *ngIf="card.id==tmpID">
+    <div class="card" style="max-width: 400px;">
+      <div (click)="closeEditForm()">
+        <button class="close">&times;</button>
+      </div>
+      <div class="business-card-form mt-3">
+        <div class="firstname-form pr-3">
+          <label class="control-label text-success" for="firstname">Firstname</label>
+          <input class="form-control mr-2" placeholder="firstname" [(ngModel)]="card.firstname">
+        </div>
+        <div class="lastname-form">
+          <label class="control-label text-success" for="lastname">Lastname</label>
+          <input class="form-control" placeholder="lastname" [(ngModel)]="card.lastname">
+        </div>
+      </div>
+
+      <div class="business-card-form">
+        <div class="email-form pr-3">
+          <label class="control-label text-success" for="email">Email </label>
+          <input class="form-control mr-2" placeholder="email" [(ngModel)]="card.email">
+        </div>
+        <div class="phone-form">
+          <label class="control-label text-success" for="phoneNumber">Phone Number</label>
+          <input class="form-control" placeholder="phone number" [(ngModel)]="card.phoneNumber">
+        </div>
+      </div>
+
+      <div class="business-card-form">
+        <div style="width: 305px;">
+          <label class="control-label text-success" for="image">Image </label>
+          <input class="form-control mr-2" placeholder="image" [(ngModel)]="card.image">
+        </div>
+        <div style="margin-top: 32px; margin-left: 10px;">
+          <button class="btn btn-outline-success">Snapshot</button>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn btn-success add-button" (click)="update(card)">
+          <i class="fa fa-check"></i>
+          &nbsp;Update
+        </button>
+      </div>
+
+    </div>
+  </span>
+
+  </tr>
+</table>
