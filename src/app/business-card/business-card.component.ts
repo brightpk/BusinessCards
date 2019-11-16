@@ -38,4 +38,8 @@ export class BusinessCardComponent implements OnInit {
     });
   }
 
+  delete(card) {
+    this.businessCardsService.deleteBusinessCard(card.id);
+  }
+
 }

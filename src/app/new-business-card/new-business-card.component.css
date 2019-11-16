@@ -6,9 +6,9 @@
 }
 
 .add-button {
-  width: 410px;
+  width: 82.5%;
   margin-left: 40px;
-  margin-right: 40px;
+  /* margin-right: 40px; */
   margin-bottom: 30px;
   margin-top: 10px;
 }
@@ -22,4 +22,16 @@
 
 .snapshot-form {
   display: flex;
+}
+
+.webcam {
+  margin-top: 70px; 
+  margin-left: 140px;
+}
+
+@media only screen and (max-width: 900px) {
+  .webcam {
+    margin-top: 70px; 
+    /* margin-left: 135px; */
+  }
 }

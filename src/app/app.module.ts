@@ -1,5 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +23,11 @@ import { BusinesscardsService } from './services/businesscards.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './auth-guard/auth.guard';
 
+import { WebcamModule } from 'ngx-webcam';
+import { WebCamComponent } from './web-cam/web-cam.component';
+import { HttpClient } from 'selenium-webdriver/http';
+import { WebcamService } from './services/webcam.service';
+
 @NgModule({
    declarations: [
       AppComponent,
@@ -33,19 +39,22 @@ import { AuthGuard } from './auth-guard/auth.guard';
       BusinessCardComponent,
       BusinessCardsComponent,
       NewBusinessCardComponent,
-
+      WebCamComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       FormsModule,
+      HttpClientModule,
       ReactiveFormsModule,
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireAuthModule,
-      AngularFirestoreModule
+      AngularFirestoreModule,
+      WebcamModule,
    ],
    providers: [
       BusinesscardsService,
+      WebcamService,
       AuthService,
       AuthGuard
    ],

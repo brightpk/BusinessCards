@@ -1,0 +1,20 @@
+<webcam [height]="310" 
+[trigger]="triggerObservable"
+(imageCapture)="handleImage($event)" 
+(initError)="handleInitError($event)"
+[imageQuality]="1"></webcam>
+
+<button class="btn btn-primary snapshot-button" (click)="triggerSnapshot()">
+  <i class="fa fa-camera"></i>
+  &nbsp; Take a Snapshot
+</button>
+
+<span id="snapshot" class="snapshot mt-5" *ngIf="webcamImage"> <!--*ngIf="webcamImage"--> 
+    <h5 class="text-success mt-4">Please confirm your business card image</h5>
+    <div class="mt-2 mb-2">
+        <button class="btn btn-primary mr-2" (click)="convertToBase64()">Confirm</button>
+        <button class="btn btn-outline-primary" (click)="webcamImage=null">Retake it, please</button>
+      </div>
+    <img [src]="webcamImage.imageAsDataUrl" id="image"/>
+</span>
+

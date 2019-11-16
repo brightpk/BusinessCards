@@ -1,83 +1,105 @@
 <div class="row">
-  <div class="col-md-5 ml-3 mt-2">
-    <h3>Add a new business card</h3>
+    <div class="col-md-5 ml-3 mt-2">
+      <h3>Add a new business card</h3>
 
-    <form [formGroup]="businessCardForm" (ngSubmit)="add()">
-      <div class="card mt-4" style="max-width: 500px;">
-        <h5 class="text-success mt-2 ml-2">Business card info</h5>
-
-        <div class="form-group business-card-form mt-3">
-          <div class="firstname-form pr-3">
-            <label class="control-label text-success" for="firstname">Firstname</label>
-            <input class="form-control mr-2" placeholder="firstname" formControlName="firstname">
+      <form #businessCardForm="ngForm" ngControl="businessCardForm"> 
+        <!-- invalid text -->
+        <div class="alert alert-danger" role="alert" *ngIf="businessCardForm.invalid&&this.submitted"
+          style="max-width: 500px;">
+          Missing some fields or invalid inputs
+       </div>
+  
+        <div class="card mt-4" style="width: 500px;">
+          <h5 class="text-success mt-2 ml-2">Business card info</h5>
+  
+  
+          <div class="form-group business-card-form">
+              <div style="width: 305px;">
+                <label class="control-label text-success" for="image">Business Card Image </label>
+                <input class="form-control mr-2" placeholder="image" [(ngModel)]="businessCard.image" name="image">
+              </div>
+              <div class="formgroup" style="margin-top: 32px; margin-left: 10px;">
+                <button class="btn btn-outline-success" (click)="toggleWebcam()">Webcam</button>
+              </div>
           </div>
-          <div class="lastname-form">
-            <label class="control-label text-success" for="lastname">Lastname</label>
-            <input class="form-control" placeholder="lastname" formControlName="lastname">
+          <div *ngIf="businessCard.cardImage">
+              <img [src]="businessCard.image" alt="BusinessCardImage" style="width:405px; height:250px; margin-left: 40px;">
+            </div>
+  
+          <div class="form-group business-card-form mt-3">
+            <div class="firstname-form pr-3">
+              <label class="control-label text-success" for="firstname">Firstname</label>
+              <input class="form-control mr-2" placeholder="firstname" required [(ngModel)]="businessCard.firstname" id="firstname" name="firstname" #firstname="ngModel">
+              <div class="text-danger small"
+                *ngIf="firstname.errors?.required && (firstname.dirty || firstname.touched)">
+                Firstname is required</div>
+            </div>
+            <div class="lastname-form">
+              <label class="control-label text-success" for="lastname">Lastname</label>
+              <input class="form-control" placeholder="lastname" required [(ngModel)]="businessCard.lastname" name="lastname" #lastname="ngModel">
+              <div class="text-danger small"
+                *ngIf="lastname.errors?.required && (lastname.dirty || lastname.touched)">
+                Lastname is required</div>
+            </div>
           </div>
+  
+          <div class="form-group business-card-form">
+            <div class="email-form pr-3">
+              <label class="control-label text-success" for="email">Email </label>
+              <input class="form-control mr-2" placeholder="email" required [(ngModel)]="businessCard.email" name="email" #email="ngModel">
+              <div class="text-danger small"
+                *ngIf="email.errors?.required && (email.dirty || email.touched)">
+                Email is required</div>
+            </div>
+            <div class="phone-form">
+              <label class="control-label text-success" for="phoneNumber">Phone Number</label>
+              <input class="form-control" placeholder="phone number" [(ngModel)]="businessCard.phoneNumber" name="phoneNumber">
+            </div>
+          </div>
+  
+          <div class="submit-form">
+            <button class="btn btn-success add-button" (click)="add(businessCardForm)">
+              <i class="fa fa-plus"></i>
+              &nbsp; Add
+            </button>
+          </div>
+  
         </div>
-
-        <div class="form-group business-card-form">
-          <div class="email-form pr-3">
-            <label class="control-label text-success" for="email">Email </label>
-            <input class="form-control mr-2" placeholder="email" formControlName="email">
-          </div>
-          <div class="phone-form">
-            <label class="control-label text-success" for="phoneNumber">Phone Number</label>
-            <input class="form-control" placeholder="phone number" formControlName="phoneNumber">
-          </div>
-        </div>
-
-        <!-- <div class="form-group business-card-form">
-          <div style="width: 305px;">
-            <label class="control-label text-success" for="image">Image </label>
-            <input class="form-control mr-2" placeholder="image" formControlName="image">
-          </div>
-          <div class="formgroup" style="margin-top: 32px; margin-left: 10px;">
-            <button class="btn btn-outline-success">Snapshot</button>
-          </div>
-        </div> -->
-
-        <div>
-          <button class="btn btn-success add-button">
-            <i class="fa fa-plus"></i>
-            &nbsp; Add
-          </button>
-        </div>
-
-      </div>
-    </form>
-  </div>
-
-  <div class="col-sm-5" style="margin-top: 60px;">
+      </form>
+    </div>
+  
+    <div class="col-sm-5 webcam">
+      <app-web-cam *ngIf="onWebcam" (imageBase64)="receiveWebcamImage($event)" (textDetection)="receiveTextDetection($event)"></app-web-cam>
       <!-- Take a snapshot -->
-      <div class="form-group snapshot-form">
-          <div style="width: 305px;">
-            <label class="control-label text-success" for="image">Image </label>
-            <input class="form-control mr-2" placeholder="image" formControlName="image">
-          </div>
-          <div class="formgroup" style="margin-top: 32px; margin-left: 10px;">
-            <button class="btn btn-outline-success">Snapshot</button>
-          </div>
-        </div>
-
-      <div class="card" style="max-width: 500px; height: 237px; margin-top: 10px">
-          <div class="row">
-            <div class="col-sm-4">
-              <span *ngIf="this.businessCardForm.value.image==''; else useRealImage">
-                <img src="/assets/images/user.png" id="user-image" style="border: solid 1px lightgray;">
-              </span>
-              <ng-template #useRealImage>
-                <img src="{{businessCardForm.value.image}}" id="user-image">
-              </ng-template>
-            </div>
-            <div class="col-sm-7 mt-5 mr-3 ml-3">
-              <h5>{{businessCardForm.value.firstname}} {{businessCardForm.value.lastname}}</h5>
-              <h5>{{businessCardForm.value.email}}</h5>
-              <h5>{{businessCardForm.value.phoneNumber}}</h5>
-            </div>
-          </div>
-        </div>
+      <!-- <div class="form-group snapshot-form">
+                <div style="width: 305px;">
+                  <label class="control-label text-success" for="image">Image </label>
+                  <input class="form-control mr-2" placeholder="image" formControlName="image">
+                </div>
+                <div class="formgroup" style="margin-top: 32px; margin-left: 10px;">
+                  <button class="btn btn-outline-success">Snapshot</button>
+                </div>
+              </div> -->
+  
+  
+      <!-- <div class="card" style="max-width: 500px; height: 237px; margin-top: 10px">
+            <div class="row">
+              <div class="col-sm-4">
+                <span *ngIf="this.businessCardForm.value.image==''; else useRealImage">
+                  <img src="/assets/images/user.png" id="user-image" style="border: solid 1px lightgray;">
+                </span>
+                <ng-template #useRealImage>
+                  <img src="{{businessCardForm.value.image}}" id="user-image">
+                </ng-template>
+              </div>
+              <div class="col-sm-7 mt-5 mr-3 ml-3">
+                <h5>{{businessCardForm.value.firstname}} {{businessCardForm.value.lastname}}</h5>
+                <h5>{{businessCardForm.value.email}}</h5>
+                <h5>{{businessCardForm.value.phoneNumber}}</h5>
+              </div>
+            </div> 
+          </div> -->
+    </div>
+  
   </div>
-
-</div>
+  

@@ -1,5 +1,5 @@
 export class Businesscard {
-  // id: string;
+  id: string;
   firstname: string;
   lastname: string;
   email: string;

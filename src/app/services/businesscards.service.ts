@@ -16,8 +16,10 @@ export class BusinesscardsService {
     this.businessCards = this.businessCardsCollection.valueChanges();
   }
 
-  addBusinessCard(newBusinessCard: Businesscard): Promise<DocumentReference> {
-    return this.businessCardsCollection.add(newBusinessCard);
+  addBusinessCard(newBusinessCard: Businesscard): Promise<void> {
+    const id = this.afs.createId();
+    newBusinessCard.id = id;
+    return this.businessCardsCollection.doc(id).set(Object.assign({}, newBusinessCard));
   }
 
   updateBusinessCard(id: string, update: Businesscard): Promise<void> {

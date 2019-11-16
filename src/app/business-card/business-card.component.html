@@ -8,11 +8,11 @@
 
   <tr *ngFor="let card of businessCards; let i = index" [attr.data-index]="i">
     <td>{{i + 1}}</td>
-    <td>
+    <td style="width: 430px;">
       <div class="card" style="max-width: 400px;">
         <div class="row">
           <div class="col-sm-4">
-            <img src="{{card.image}}" alt="image" style="width: 100px; height:100px; margin:10px;">
+            <img src="/assets/images/user.png" alt="image" style="width: 100px; height:100px; margin:10px;">
           </div>
           <div class="col-sm-5 mt-3">
             <h6>{{card.firstname}} {{card.lastname}}</h6>
@@ -22,9 +22,10 @@
         </div>
       </div>
     </td>
-    <td>
-        <div class="card" style="max-width: 400px; height: 122px;">
-          <!-- <div class="row">
+    <td style="width: 100px;">
+        <img src="{{card.image}}" alt="image" style="height:100px; margin:10px;">
+        <!-- <div class="card" style="max-width: 400px; height: 122px;">
+          <div class="row">
             <div class="col-sm-4">
               <img src="{{card.image}}" alt="image" style="width: 100px; height:100px; margin:10px;">
             </div>
@@ -33,15 +34,15 @@
               <h6>{{card.email}}</h6>
               <h6>{{card.phoneNumber}}</h6>
             </div>
-          </div> -->
-        </div>
+          </div>
+        </div> -->
       </td>
     <td>
       <button class="btn btn-success mr-2" (click)="openEditForm(this.card)">
         <i class="fa fa-edit"></i>
         Edit
       </button>
-      <button class="btn btn-danger mr-2">
+      <button class="btn btn-danger mr-2" (click)="delete(this.card)">
         <i class="fa fa-remove"></i>
         Remove
       </button>
