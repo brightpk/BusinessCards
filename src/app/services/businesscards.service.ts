@@ -23,7 +23,7 @@ export class BusinesscardsService {
   }
 
   updateBusinessCard(id: string, update: Businesscard): Promise<void> {
-    return this.businessCardsCollection.doc(id).update(update);
+    return this.businessCardsCollection.doc(id).update(Object.assign({}, update));
   }
 
   deleteBusinessCard(id: string): Promise<void> {

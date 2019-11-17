@@ -1,3 +1,5 @@
+<app-loading-screen *ngIf="loading"></app-loading-screen>
+
 <div class="row">
     <div class="col-md-5 ml-3 mt-2">
       <h3>Add a new business card</h3>
@@ -14,7 +16,7 @@
   
   
           <div class="form-group business-card-form">
-              <div style="width: 305px;">
+              <div style="width: 310px;">
                 <label class="control-label text-success" for="image">Business Card Image </label>
                 <input class="form-control mr-2" placeholder="image" [(ngModel)]="businessCard.image" name="image">
               </div>
@@ -22,9 +24,16 @@
                 <button class="btn btn-outline-success" (click)="toggleWebcam()">Webcam</button>
               </div>
           </div>
-          <div *ngIf="businessCard.cardImage">
+          <!-- <div *ngIf="businessCard.cardImage">
               <img [src]="businessCard.image" alt="BusinessCardImage" style="width:405px; height:250px; margin-left: 40px;">
+            </div> -->
+
+          <div class="form-group business-card-form">
+            <div style="width: 410px;">
+              <label class="control-label text-success" for="company">Company Name </label>
+              <input class="form-control mr-2" placeholder="company" [(ngModel)]="businessCard.company" name="company">
             </div>
+          </div>
   
           <div class="form-group business-card-form mt-3">
             <div class="firstname-form pr-3">
@@ -69,7 +78,10 @@
     </div>
   
     <div class="col-sm-5 webcam">
-      <app-web-cam *ngIf="onWebcam" (imageBase64)="receiveWebcamImage($event)" (textDetection)="receiveTextDetection($event)"></app-web-cam>
+      <app-web-cam *ngIf="onWebcam" 
+      (imageBase64)="receiveWebcamImage($event)" 
+      (textDetection)="receiveTextDetection($event)"
+      (loading)="isLoading($event)"></app-web-cam>
       <!-- Take a snapshot -->
       <!-- <div class="form-group snapshot-form">
                 <div style="width: 305px;">

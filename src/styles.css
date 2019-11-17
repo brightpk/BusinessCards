@@ -18,3 +18,5 @@ h1, h2, h3, h4, h5, h6 {
   font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-weight: bold;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

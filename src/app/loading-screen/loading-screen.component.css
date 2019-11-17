@@ -1,0 +1,12 @@
+.loading {
+  background-color: #53535338;
+  height: 1000%;
+  width: 100%;
+  z-index: 10;
+  position: absolute;
+}
+
+.mat-spinner {
+  margin-top: 15%;
+  margin-left: 50%;
+}

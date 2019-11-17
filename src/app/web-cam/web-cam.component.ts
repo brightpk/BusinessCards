@@ -14,6 +14,8 @@ import { WebcamService } from '../services/webcam.service';
 export class WebCamComponent implements OnInit {
   @Output() imageBase64 = new EventEmitter();
   @Output() textDetection = new EventEmitter();
+  @Output() loading = new EventEmitter<boolean>();
+  loadingPage: boolean;
 
   public webcamImage: WebcamImage = null;    // latest snapshot
   private trigger: Subject<void> = new Subject<void>();   // webcam snapshot trigger
@@ -22,6 +24,7 @@ export class WebCamComponent implements OnInit {
   constructor(private webcamService: WebcamService) { }
 
   ngOnInit() {
+    this.loadingPage = false;
   }
 
   public triggerSnapshot(): void {
@@ -45,23 +48,27 @@ export class WebCamComponent implements OnInit {
   }
 
   convertToBase64() {
+    this.loading.emit(true);
     const imgNode = document.getElementById('image');
     console.log(imgNode);
     domtoimage.toPng(imgNode)
     .then( (dataUrl: string) => {
       console.log('converting base64...');
       this.imageBase64.emit(dataUrl);
-      this.webcamService.getData(dataUrl)
+      this.webcamService.getTextDetection(dataUrl)
       .subscribe(res => {
         this.textDetection.emit(res);
+        this.loading.emit(false);
       },
       (err) => {
         console.log(err);
+        this.loading.emit(false);
       });
 
     }).catch( (e: any) => {
       console.log('SELECTED IMAGE BASE64 SOMETHING WENT WRONG');
       console.log(e);
+      this.loading.emit(false);
     });
   }
 

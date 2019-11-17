@@ -1,3 +1,7 @@
+.snapshot {
+  margin-top: 20px;
+}
+
 .snapshot img {
     max-width: 413px;
     max-height: 400px;
@@ -12,6 +16,9 @@
       margin-left: -80px;
     }
     .snapshot-button {
+      margin-left: -80px;
+    }
+    .snapshot {
       margin-left: -80px;
     }
   }

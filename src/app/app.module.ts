@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BusinessCardComponent } from './business-card/business-card.component';
 import { BusinessCardsComponent } from './business-cards/business-cards.component';
 import { NewBusinessCardComponent } from './new-business-card/new-business-card.component';
+import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -25,8 +29,9 @@ import { AuthGuard } from './auth-guard/auth.guard';
 
 import { WebcamModule } from 'ngx-webcam';
 import { WebCamComponent } from './web-cam/web-cam.component';
-import { HttpClient } from 'selenium-webdriver/http';
 import { WebcamService } from './services/webcam.service';
+
+import { MatDialogModule, MatButtonModule, MatSnackBarModule, MatProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
    declarations: [
@@ -39,7 +44,9 @@ import { WebcamService } from './services/webcam.service';
       BusinessCardComponent,
       BusinessCardsComponent,
       NewBusinessCardComponent,
-      WebCamComponent
+      WebCamComponent,
+      LoadingScreenComponent,
+      ConfirmationDialogComponent
    ],
    imports: [
       BrowserModule,
@@ -51,6 +58,14 @@ import { WebcamService } from './services/webcam.service';
       AngularFireAuthModule,
       AngularFirestoreModule,
       WebcamModule,
+      BrowserAnimationsModule,
+      MatDialogModule,
+      MatButtonModule,
+      MatSnackBarModule,
+      MatProgressSpinnerModule
+   ],
+   entryComponents: [
+      ConfirmationDialogComponent
    ],
    providers: [
       BusinesscardsService,

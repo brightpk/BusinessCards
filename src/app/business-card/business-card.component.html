@@ -1,13 +1,26 @@
+<app-loading-screen *ngIf="loading"></app-loading-screen>
+
 <table class="table table-hover">
   <tr>
     <th>#</th>
     <th>Business Card</th>
-    <th>Image</th>
     <th>Options</th>
   </tr>
 
   <tr *ngFor="let card of businessCards; let i = index" [attr.data-index]="i">
-    <td>{{i + 1}}</td>
+    <!--Snapshot-->
+    <div class=" webcam-edit" align="center" *ngIf="card.id==selectedCard.id&&onWebcam">
+      <div style="padding-bottom: 37px;" (click)="closeWebcam()">
+        <button class="closeCam btn btn-dark">&times;</button>
+     </div>
+      <app-web-cam class="webcam"
+      (imageBase64)="receiveWebcamImage($event)" 
+      (textDetection)="receiveTextDetection($event)"
+      (loading)="isLoading($event)"></app-web-cam>
+    </div>
+    <td>
+      {{i + 1}}
+    </td>
     <td style="width: 430px;">
       <div class="card" style="max-width: 400px;">
         <div class="row">
@@ -15,85 +28,90 @@
             <img src="/assets/images/user.png" alt="image" style="width: 100px; height:100px; margin:10px;">
           </div>
           <div class="col-sm-5 mt-3">
+            <h6>{{card.company}}</h6>
             <h6>{{card.firstname}} {{card.lastname}}</h6>
             <h6>{{card.email}}</h6>
             <h6>{{card.phoneNumber}}</h6>
           </div>
         </div>
       </div>
+
+      <div *ngIf="selectedCard.image==card.image&&onPreview" id="image" class="collapse">
+        <img src="{{card.image}}" alt="image" style="height:170px; width: 400px; margin-top:10px;">
+      </div>
     </td>
-    <td style="width: 100px;">
-        <img src="{{card.image}}" alt="image" style="height:100px; margin:10px;">
-        <!-- <div class="card" style="max-width: 400px; height: 122px;">
-          <div class="row">
-            <div class="col-sm-4">
-              <img src="{{card.image}}" alt="image" style="width: 100px; height:100px; margin:10px;">
-            </div>
-            <div class="col-sm-5 mt-3">
-              <h6>{{card.firstname}} {{card.lastname}}</h6>
-              <h6>{{card.email}}</h6>
-              <h6>{{card.phoneNumber}}</h6>
-            </div>
-          </div>
-        </div> -->
-      </td>
+
     <td>
+      <button class="btn btn-primary mr-2" (click)="openImage(this.card)" data-toggle="collapse" data-target="#image">
+        <i class="fa fa-image"></i>
+        Preview Image
+      </button>
       <button class="btn btn-success mr-2" (click)="openEditForm(this.card)">
         <i class="fa fa-edit"></i>
         Edit
       </button>
-      <button class="btn btn-danger mr-2" (click)="delete(this.card)">
+      <button class="btn btn-danger mr-2" (click)="openDialog(this.card)">
         <i class="fa fa-remove"></i>
         Remove
       </button>
+
     </td>
 
-    <span *ngIf="card.id==tmpID">
-    <div class="card" style="max-width: 400px;">
-      <div (click)="closeEditForm()">
-        <button class="close">&times;</button>
-      </div>
-      <div class="business-card-form mt-3">
-        <div class="firstname-form pr-3">
-          <label class="control-label text-success" for="firstname">Firstname</label>
-          <input class="form-control mr-2" placeholder="firstname" [(ngModel)]="card.firstname">
+    <!--*ngIf="card.id==tmpID"-->
+    <div *ngIf="card.id==selectedCard.id">
+      <div class="card" style="max-width: 400px;">
+        <div (click)="closeEditForm()">
+          <button class="close">&times;</button>
         </div>
-        <div class="lastname-form">
-          <label class="control-label text-success" for="lastname">Lastname</label>
-          <input class="form-control" placeholder="lastname" [(ngModel)]="card.lastname">
-        </div>
-      </div>
 
-      <div class="business-card-form">
-        <div class="email-form pr-3">
-          <label class="control-label text-success" for="email">Email </label>
-          <input class="form-control mr-2" placeholder="email" [(ngModel)]="card.email">
+        <div class="business-card-form">
+          <div style="width: 410px;">
+            <label class="control-label text-success" for="image">Organization </label>
+            <input class="form-control mr-2" placeholder="image" [(ngModel)]="card.company">
+          </div>
         </div>
-        <div class="phone-form">
-          <label class="control-label text-success" for="phoneNumber">Phone Number</label>
-          <input class="form-control" placeholder="phone number" [(ngModel)]="card.phoneNumber">
-        </div>
-      </div>
 
-      <div class="business-card-form">
-        <div style="width: 305px;">
-          <label class="control-label text-success" for="image">Image </label>
-          <input class="form-control mr-2" placeholder="image" [(ngModel)]="card.image">
+        <div class="business-card-form mt-3">
+          <div class="firstname-form pr-3">
+            <label class="control-label text-success" for="firstname">Firstname</label>
+            <input class="form-control mr-2" placeholder="firstname" [(ngModel)]="card.firstname">
+          </div>
+          <div class="lastname-form">
+            <label class="control-label text-success" for="lastname">Lastname</label>
+            <input class="form-control" placeholder="lastname" [(ngModel)]="card.lastname">
+          </div>
         </div>
-        <div style="margin-top: 32px; margin-left: 10px;">
-          <button class="btn btn-outline-success">Snapshot</button>
+
+        <div class="business-card-form">
+          <div class="email-form pr-3">
+            <label class="control-label text-success" for="email">Email </label>
+            <input class="form-control mr-2" placeholder="email" [(ngModel)]="card.email">
+          </div>
+          <div class="phone-form">
+            <label class="control-label text-success" for="phoneNumber">Phone Number</label>
+            <input class="form-control" placeholder="phone number" [(ngModel)]="card.phoneNumber">
+          </div>
         </div>
-      </div>
 
-      <div>
-        <button class="btn btn-success add-button" (click)="update(card)">
-          <i class="fa fa-check"></i>
-          &nbsp;Update
-        </button>
-      </div>
+        <div class="business-card-form">
+          <div style="width: 310px;">
+            <label class="control-label text-success" for="image">Business Card Image </label>
+            <input class="form-control mr-2" placeholder="image" [(ngModel)]="card.image">
+          </div>
+          <div style="margin-top: 32px; margin-left: 10px;">
+            <button class="btn btn-outline-success" (click)="openWebcam(card)">
+              Webcam</button>
+          </div>
+        </div>
 
+        <div>
+          <button class="btn btn-success add-button" (click)="update(card)">
+            <i class="fa fa-check"></i>
+            &nbsp;Update
+          </button>
+        </div>
+
+      </div>
     </div>
-  </span>
-
   </tr>
 </table>

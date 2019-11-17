@@ -4,6 +4,10 @@
   margin-right: .5em;
 }
 
+.closeCam {
+  float: left;
+}
+
 .business-card-form {
   display: flex;
   margin-top: 10px;
@@ -24,4 +28,28 @@
   height:150px; 
   margin: 15px;
   margin-top: 25px;
+}
+
+.webcam-edit {
+  background-color: #4747476c;
+  padding-left: 50px;
+  padding-right: 100%;
+  padding-bottom: 30px;
+  /* padding-top: 30px; */
+  position: absolute;
+  z-index: 2;
+}
+
+.webcam {
+  display: flex;
+}
+
+/* style in child */
+:host ::ng-deep app-web-cam .snapshot {
+  margin-top: -0.5px;
+  margin-left: 20px;
+}
+
+:host ::ng-deep app-web-cam .webcam-title {
+  display: none;
 }
