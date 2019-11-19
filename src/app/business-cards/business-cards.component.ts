@@ -31,7 +31,7 @@ export class BusinessCardsComponent implements OnInit {
   }
 
   onClikcAdd() {
-    this.router.navigate(['/new-businesscard']);
+    this.router.navigate(['/new-business-card']);
   }
 
 }

@@ -64,25 +64,27 @@ export class NewBusinessCardComponent implements OnInit {
   }
 
   add() {
-    // this.loading ;
+    this.loading = true;
     this.submitted = true;
     if (this.form.invalid) {
       console.log('Missing some fields/invalid. Not able to add a new business card');
-      // this.loading = false;
+      this.loading = false;
     } else if (this.form.valid) {
       this.businessCardsService.addBusinessCard(this.businessCard)
       .then(res => {
         console.log('Successfully ADDED!');
         this.submitted = false;
-        // this.loading = false;
+        this.loading = false;
         this.openSnackBar('Successfully ADDED!', 'x', 5000 );
       })
       .catch(err => {
         console.log('Fail to ADD a new business card :(');
         this.openSnackBar('Fail to add a new business card', 'x', 5000 );
-        // this.loading = false;
+        this.loading = false;
       });
     }
+
+    this.loading = false;
 
   }
 

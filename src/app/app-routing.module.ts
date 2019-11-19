@@ -11,8 +11,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'profile', component: ProfileComponent, canActivate: [ AuthGuard ]},
-  { path: 'businesscards', component: DashboardComponent, canActivate: [ AuthGuard ]},
-  { path: 'new-businesscard', component: NewBusinessCardComponent, canActivate: [ AuthGuard ]}
+  { path: 'business-cards', component: DashboardComponent, canActivate: [ AuthGuard ]},
+  { path: 'new-business-card', component: NewBusinessCardComponent, canActivate: [ AuthGuard ]}
 
 ];
 

@@ -14,11 +14,10 @@
 </div>
 
 <div id="snapshot" class="snapshot" *ngIf="webcamImage">
-  <!--*ngIf="webcamImage"-->
   <h5 class="text-success webcam-title">Please confirm your business card image</h5>
   <img [src]="webcamImage.imageAsDataUrl" id="image" />
   <div class="mt-2 mb-2">
-    <button class="btn btn-primary mr-2" (click)="convertToBase64()">Confirm</button>
+    <button class="btn btn-primary mr-2" (click)="convertToBase64()">Use this image</button>
     <button class="btn btn-secondary" (click)="webcamImage=null">Cancel</button>
   </div>
 </div>

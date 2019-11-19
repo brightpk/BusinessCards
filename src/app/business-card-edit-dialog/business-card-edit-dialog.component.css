@@ -1,0 +1,44 @@
+.business-card-form {
+  display: flex;
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.confirm-buttons {
+  float: right;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.update-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.closeEdit {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+}
+
+.closeCam {
+  position: relative;
+  top: 45px;
+  float: left;
+  right: -30px;
+  font-size: 25px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+::ng-deep .mat-tooltip {
+  font-size: 15px;
+}
+
+/* style in child */
+/* :host ::ng-deep app-loading-screen .loading {
+  right: 1px;
+  top: 1px;
+} */

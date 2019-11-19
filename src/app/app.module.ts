@@ -31,7 +31,8 @@ import { WebcamModule } from 'ngx-webcam';
 import { WebCamComponent } from './web-cam/web-cam.component';
 import { WebcamService } from './services/webcam.service';
 
-import { MatDialogModule, MatButtonModule, MatSnackBarModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatDialogModule, MatButtonModule, MatSnackBarModule, MatProgressSpinnerModule, MatTooltipModule } from '@angular/material';
+import { BusinessCardEditDialogComponent } from './business-card-edit-dialog/business-card-edit-dialog.component';
 
 @NgModule({
    declarations: [
@@ -46,7 +47,8 @@ import { MatDialogModule, MatButtonModule, MatSnackBarModule, MatProgressSpinner
       NewBusinessCardComponent,
       WebCamComponent,
       LoadingScreenComponent,
-      ConfirmationDialogComponent
+      ConfirmationDialogComponent,
+      BusinessCardEditDialogComponent
    ],
    imports: [
       BrowserModule,
@@ -61,11 +63,13 @@ import { MatDialogModule, MatButtonModule, MatSnackBarModule, MatProgressSpinner
       BrowserAnimationsModule,
       MatDialogModule,
       MatButtonModule,
+      MatTooltipModule,
       MatSnackBarModule,
       MatProgressSpinnerModule
    ],
    entryComponents: [
-      ConfirmationDialogComponent
+      ConfirmationDialogComponent,
+      BusinessCardEditDialogComponent
    ],
    providers: [
       BusinesscardsService,

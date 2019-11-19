@@ -4,6 +4,7 @@ import { BusinesscardsService } from '../services/businesscards.service';
 import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { WebcamService } from '../services/webcam.service';
+import { BusinessCardEditDialogComponent } from '../business-card-edit-dialog/business-card-edit-dialog.component';
 
 @Component({
   selector: 'app-business-card',
@@ -16,10 +17,10 @@ export class BusinessCardComponent implements OnInit {
 
 
   selectedCard: Businesscard;
-  imageBase64: string;
+  // imageBase64: string;
   onPreview: boolean;
-  onWebcam: boolean;
-  closeForm: boolean;
+  // onWebcam: boolean;
+  // closeForm: boolean;
   loading: boolean;
 
   constructor(
@@ -30,19 +31,19 @@ export class BusinessCardComponent implements OnInit {
 
   ngOnInit() {
     this.selectedCard = new Businesscard();
-    this.imageBase64 = '';
+    // this.imageBase64 = '';
     this.onPreview = false;
-    this.onWebcam = false;
-    this.closeForm = true;
+    // this.onWebcam = false;
+    // this.closeForm = true;
   }
 
-  openEditForm(card) {
-    this.selectedCard.id = card.id;
-  }
+  // openEditForm(card) {
+  //   this.selectedCard.id = card.id;
+  // }
 
-  closeEditForm() {
-    this.selectedCard.id = '';
-  }
+  // closeEditForm() {
+  //   this.selectedCard.id = '';
+  // }
 
   openImage(card) {
     if (this.selectedCard.image === card.image) {
@@ -54,14 +55,14 @@ export class BusinessCardComponent implements OnInit {
     }
   }
 
-  openWebcam(card) {
-    this.onWebcam = true;
-    this.selectedCard.id = card.id;
-  }
+  // openWebcam(card) {
+  //   this.onWebcam = true;
+  //   this.selectedCard.id = card.id;
+  // }
 
-  closeWebcam() {
-    this.onWebcam = false;
-  }
+  // closeWebcam() {
+  //   this.onWebcam = false;
+  // }
 
   openSnackBar(msg: string, action: string, time?: number) {
     this.snackBar.open(msg, action, { duration: time });
@@ -71,40 +72,41 @@ export class BusinessCardComponent implements OnInit {
     this.loading = loading;
   }
 
-  receiveWebcamImage(imageBase64) {
-    this.imageBase64 = imageBase64;
-  }
+  // receiveWebcamImage(imageBase64) {
+  //   this.imageBase64 = imageBase64;
+  // }
 
-  receiveTextDetection(textDetection) {
-    const data = this.webcamService.getDataFields(textDetection);
+  // receiveTextDetection(textDetection) {
+  //   const data = this.webcamService.getDataFields(textDetection);
 
-    for (let i = 0; i < this.businessCards.length; i++) {
-      if (this.businessCards[i].id === this.selectedCard.id) {
-        const id = this.businessCards[i].id;
-        this.businessCards[i] = data;
-        this.businessCards[i].id = id;
-        this.businessCards[i].company = '';
-        this.businessCards[i].image = this.imageBase64;
-        this.openEditForm(this.businessCards[i]);
-        this.closeWebcam();
-      }
-    }
+  //   for (let i = 0; i < this.businessCards.length; i++) {
+  //     if (this.businessCards[i].id === this.selectedCard.id) {
+  //       const id = this.businessCards[i].id;
+  //       this.businessCards[i] = data;
+  //       this.businessCards[i].id = id;
+  //       this.businessCards[i].company = '';
+  //       this.businessCards[i].image = this.imageBase64;
+  //       // this.openEditForm(this.businessCards[i]);
+  //       this.closeWebcam();
+  //     }
+  //   }
 
-  }
+  // }
 
   update(card) {
     this.loading = true;
     this.businessCardsService.updateBusinessCard(card.id, card)
     .then(res => {
-      this.loading = false;
       console.log('Successfully UPDATED!');
+      this.loading = false;
       this.openSnackBar('Successfully UPDATED!', 'x', 5000 );
     })
     .catch(err => {
-      this.loading = false;
       console.log('Fail to UPDATE a particular business card :(');
+      this.loading = false;
       this.openSnackBar('Fail to UPDATE', 'x', 5000 );
     });
+
     this.loading = false;
   }
 
@@ -112,7 +114,7 @@ export class BusinessCardComponent implements OnInit {
     this.businessCardsService.deleteBusinessCard(card.id);
   }
 
-  openDialog(card): void {
+  openDeleteDialog(card): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -131,6 +133,22 @@ export class BusinessCardComponent implements OnInit {
       if (res) {
         this.delete(card);
         console.log(`Deleted ${card.firstname} ${card.lastname}`);
+      }
+    });
+  }
+
+  openEditDialog(card): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '480px';
+    dialogConfig.data = card;
+
+    const dialogRef = this.dialog.open(BusinessCardEditDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.update(res);
       }
     });
   }
