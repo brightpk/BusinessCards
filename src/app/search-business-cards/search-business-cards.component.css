@@ -1,0 +1,9 @@
+.card-not-found {
+  width: 800px;
+  margin: 0;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

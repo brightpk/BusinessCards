@@ -46,6 +46,7 @@ export class BusinessCardComponent implements OnInit {
   // }
 
   openImage(card) {
+    console.log(card.firstname);
     if (this.selectedCard.image === card.image) {
       this.onPreview = false;
       this.selectedCard.image = '';

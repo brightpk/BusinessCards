@@ -1,0 +1,67 @@
+.right-navbar {
+  display: flex;
+  float: right;
+}
+
+.choices {
+  margin-top: .1px;
+
+}
+
+.search-form {
+  margin-top: 3px;
+  margin-right: 15px;
+}
+
+input {
+  background: white;
+  color: black;
+  border: none;
+  flex: 1 1 auto;
+  height: 35px;
+}
+
+.search-by {
+  background: lightgray;
+  color: gray;
+  height: 35px;
+  margin-top: 2px;
+  border-top-left-radius: .3rem !important;
+  border-bottom-left-radius: .3rem !important;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: none;
+}
+
+.choice1, .choice2, .choice3 {
+  background: #28a745;
+  color: white;
+}
+
+.search-button {
+  background: white;
+  color: gray;
+  height: 35px;
+  margin-top: -.5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: .3rem !important;
+  border-bottom-right-radius: .3rem !important;
+  border: none;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: grey;
+  opacity: 1; /* Firefox */
+}
+
+
+/* .search-for, p {
+  margin-top: 10px;
+}
+
+.search-form:hover p {
+  background-color: transparent;
+  color: #bbb;
+} */
+

@@ -1,0 +1,17 @@
+<div class="add-new-card mt-2 mb-3 ml-3">
+    <h5 class="pr-3 mt-2 text-success">Searching...</h5>
+</div>
+
+<app-business-cards
+[foundBusinessCardsList]="foundBusinessCardsList"
+[searchFor]="searchFor"
+[searchBy]="searchBy"></app-business-cards>
+
+<div *ngIf="foundBusinessCardsList=='' || foundBusinessCardsList==undefined"
+    class="alert alert-success card-not-found" 
+    id="searchForEmpty">
+    <h4>Sorry, coudn't find business cards that you're looking for</h4>
+</div>
+
+
+

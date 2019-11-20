@@ -33,6 +33,7 @@ import { WebcamService } from './services/webcam.service';
 
 import { MatDialogModule, MatButtonModule, MatSnackBarModule, MatProgressSpinnerModule, MatTooltipModule } from '@angular/material';
 import { BusinessCardEditDialogComponent } from './business-card-edit-dialog/business-card-edit-dialog.component';
+import { SearchBusinessCardsComponent } from './search-business-cards/search-business-cards.component';
 
 @NgModule({
    declarations: [
@@ -48,7 +49,8 @@ import { BusinessCardEditDialogComponent } from './business-card-edit-dialog/bus
       WebCamComponent,
       LoadingScreenComponent,
       ConfirmationDialogComponent,
-      BusinessCardEditDialogComponent
+      BusinessCardEditDialogComponent,
+      SearchBusinessCardsComponent
    ],
    imports: [
       BrowserModule,

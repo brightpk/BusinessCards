@@ -1,0 +1,16 @@
+.logout-button {
+  font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  /* position: absolute;
+  right: 135px; */
+  cursor: pointer;
+  color: white !important;
+}
+
+.logout-button p {
+  margin-top: 10px;
+}
+
+.logout-button:hover p {
+  background-color: transparent;
+  color: #bbb;
+}
