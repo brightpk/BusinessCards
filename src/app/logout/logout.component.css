@@ -1,9 +1,7 @@
 .logout-button {
   font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
-  /* position: absolute;
-  right: 135px; */
   cursor: pointer;
-  color: white !important;
+  color: gray !important;
 }
 
 .logout-button p {
@@ -12,5 +10,11 @@
 
 .logout-button:hover p {
   background-color: transparent;
-  color: #bbb;
+  color: #28a745;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  color: white;
+  text-decoration: none;
+  background-color: white;
 }

@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Edit User Information</h2>
+
+<mat-dialog-content>
+  <div class="edit-fields">
+    <i class="fa fa-user user-edit-icons" aria-hidden="true"></i>
+    <input class="form-control" placeholder="firstname" [(ngModel)]="user.firstname">
+  </div>
+
+  <div class="edit-fields">
+    <i class="fa fa-user user-edit-icons" aria-hidden="true"></i>
+    <input class="form-control" placeholder="lastname" [(ngModel)]="user.lastname">
+  </div>
+
+  <div class="edit-fields">
+      <i class="fa fa-envelope user-edit-icons" aria-hidden="true" style="font-size: 15px; margin-right: 9px;"></i>
+      <input class="form-control" placeholder="email" [(ngModel)]="user.email">
+  </div>
+
+  <div class="edit-fields">
+      <i class="fa fa-gift user-edit-icons" aria-hidden="true" style="margin-right: 8px;"></i>
+      <input class="form-control" placeholder="date of birth" [(ngModel)]="user.dob">
+  </div>
+
+  <div class="edit-fields">
+      <i class="fa fa-phone user-edit-icons" aria-hidden="true"></i>
+      <input class="form-control" placeholder="phone" [(ngModel)]="user.phone">
+  </div>
+
+  <div class="edit-fields">
+      <i class="fa fa-home user-edit-icons" aria-hidden="true" style="margin-right: 8px;"></i>
+      <input class="form-control" placeholder="address" [(ngModel)]="user.address">
+  </div>
+ 
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="mr-2" (click)="onNoClick()">Close</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="user">Update</button>
+</mat-dialog-actions>

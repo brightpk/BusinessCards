@@ -37,13 +37,6 @@ export class BusinessCardComponent implements OnInit {
     // this.closeForm = true;
   }
 
-  // openEditForm(card) {
-  //   this.selectedCard.id = card.id;
-  // }
-
-  // closeEditForm() {
-  //   this.selectedCard.id = '';
-  // }
 
   openImage(card) {
     console.log(card.firstname);
@@ -56,15 +49,6 @@ export class BusinessCardComponent implements OnInit {
     }
   }
 
-  // openWebcam(card) {
-  //   this.onWebcam = true;
-  //   this.selectedCard.id = card.id;
-  // }
-
-  // closeWebcam() {
-  //   this.onWebcam = false;
-  // }
-
   openSnackBar(msg: string, action: string, time?: number) {
     this.snackBar.open(msg, action, { duration: time });
   }
@@ -72,27 +56,6 @@ export class BusinessCardComponent implements OnInit {
   isLoading(loading) {
     this.loading = loading;
   }
-
-  // receiveWebcamImage(imageBase64) {
-  //   this.imageBase64 = imageBase64;
-  // }
-
-  // receiveTextDetection(textDetection) {
-  //   const data = this.webcamService.getDataFields(textDetection);
-
-  //   for (let i = 0; i < this.businessCards.length; i++) {
-  //     if (this.businessCards[i].id === this.selectedCard.id) {
-  //       const id = this.businessCards[i].id;
-  //       this.businessCards[i] = data;
-  //       this.businessCards[i].id = id;
-  //       this.businessCards[i].company = '';
-  //       this.businessCards[i].image = this.imageBase64;
-  //       // this.openEditForm(this.businessCards[i]);
-  //       this.closeWebcam();
-  //     }
-  //   }
-
-  // }
 
   update(card) {
     this.loading = true;

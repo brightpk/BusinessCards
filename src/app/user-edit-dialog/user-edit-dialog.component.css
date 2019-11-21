@@ -1,0 +1,15 @@
+.update-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.user-edit-icons {
+  font-size: 20px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.edit-fields {
+  display: flex;
+  margin-bottom: 10px;
+}

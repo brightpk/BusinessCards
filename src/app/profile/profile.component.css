@@ -1,0 +1,41 @@
+.profile {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.left-panel {
+  border: solid 1px lightgray;
+  /* border-top-left-radius: 1rem !important;;
+  border-bottom-left-radius: 1rem !important;;
+  border-top-right-radius: 1rem !important;
+  border-bottom-right-radius: 1rem !important; */
+}
+
+.user-info-panel {
+  margin-top: 20px;
+  margin-top: 20px;
+}
+
+.user-info {
+  display: flex; 
+  margin-top:20px;
+}
+
+.profile-picture {
+  text-align:center;
+}
+
+.right-panel {
+  border: solid 1px lightgray;
+  /* border-top-left-radius: 1rem !important;;
+  border-bottom-left-radius: 1rem !important;;
+  border-top-right-radius: 1rem !important;
+  border-bottom-right-radius: 1rem !important; */
+  margin-left: 70px;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  color: gray;
+  text-decoration: none;
+  background-color: white;
+}

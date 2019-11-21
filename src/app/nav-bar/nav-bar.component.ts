@@ -42,4 +42,21 @@ export class NavBarComponent implements OnInit {
     this.router.navigateByUrl(`business-cards/searchBy/${this.searchBy}/searchFor/${this.searchFor.value}`);
   }
 
+  onSearchBy(event, choice) {
+    event.preventDefault();
+
+    switch (choice) {
+      case 1:
+        this.searchBy = 'firstname&company';
+        break;
+      case 2:
+        this.searchBy = 'firstname';
+        break;
+      case 3:
+        this.searchBy = 'company';
+        break;
+    }
+
+  }
+
 }

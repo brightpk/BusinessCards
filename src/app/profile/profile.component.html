@@ -1,3 +1,73 @@
-<p>
-  profile works!
-</p>
+<div class="container profile">
+  <div class="row">
+    <div class="col-md-3 left-panel">
+      <div class="user-info-panel">
+        <h4 class="text-center">PROFILE</h4>
+
+        <div class="profile-picture">
+          <img src="/assets/images/man.png" alt="image" style="width: 150px; height:150px; margin:10px;">
+        </div>
+
+        <div class="user-info">
+          <i class="fa fa-user" aria-hidden="true" style="font-size: 20px; margin-right: 10px;"></i>
+          <h6>{{user.firstname}} {{user.lastname}}</h6>
+        </div>
+
+        <div class="user-info">
+          <i class="fa fa-envelope" aria-hidden="true" style="font-size: 15px; margin-right: 10px;"></i>
+          <h6>{{user.email}}</h6>
+        </div>
+
+        <div class="user-info">
+          <i class="fa fa-gift" aria-hidden="true" style="font-size: 20px; margin-right: 10px;"></i>
+          <h6>{{user.dob}}</h6>
+        </div>
+
+        <div class="user-info">
+          <i class="fa fa-phone" aria-hidden="true" style="font-size: 20px; margin-right: 10px;"></i>
+          <h6>{{user.phone}}</h6>
+        </div>
+
+        <div class="user-info">
+          <i class="fa fa-home" aria-hidden="true" style="font-size: 20px; margin-right: 10px;"></i>
+          <h6>{{user.address}}</h6>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-sm right-panel">
+      
+      <div class="mt-3 ml-3">
+        <div align="end">
+          <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-cog" aria-hidden="true"></i>&nbsp; Setting
+          </button>
+          <div class="dropdown-menu choices" role="menu">
+            <li><a href="#" class="dropdown-item" (click)="openEditDialog(user, $event)">
+              Edit user info</a></li>
+          </div>
+        </div>
+        <h3 class="text-success mb-3">WELCOME BACK!</h3>
+        <h4 class="text-success">Features</h4>
+        <ul type="circle">
+            <li><p>Add new business cards</p></li>
+            <li><p>Take snapshots of business cards and populate information</p></li>
+            <li><p>Update business cards</p></li>
+            <li><p>Search business cards</p></li>
+            <li><p>Delete business cards</p></li>
+        </ul>
+
+        <h4 class="text-success">Instruction of adding a new business card</h4>
+        <ul type="circle">
+          <li><p>Click on "webcam" to take a snapshot of business card</p></li>
+          <li><p>Confirm the image</p></li>
+          <li><p>Edit information in business card fields if needed</p></li>
+          <li><p>Click "add"</p></li>
+      </ul>
+
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -16,6 +16,7 @@ import { BusinessCardsComponent } from './business-cards/business-cards.componen
 import { NewBusinessCardComponent } from './new-business-card/new-business-card.component';
 import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { UserEditDialogComponent } from './user-edit-dialog/user-edit-dialog.component';
 
 
 import { AngularFireModule } from '@angular/fire';
@@ -24,6 +25,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 
 import { BusinesscardsService } from './services/businesscards.service';
+import { UsersService } from './services/users.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './auth-guard/auth.guard';
 
@@ -50,7 +52,9 @@ import { SearchBusinessCardsComponent } from './search-business-cards/search-bus
       LoadingScreenComponent,
       ConfirmationDialogComponent,
       BusinessCardEditDialogComponent,
-      SearchBusinessCardsComponent
+      UserEditDialogComponent,
+      SearchBusinessCardsComponent,
+      UserEditDialogComponent
    ],
    imports: [
       BrowserModule,
@@ -71,11 +75,13 @@ import { SearchBusinessCardsComponent } from './search-business-cards/search-bus
    ],
    entryComponents: [
       ConfirmationDialogComponent,
-      BusinessCardEditDialogComponent
+      BusinessCardEditDialogComponent,
+      UserEditDialogComponent
    ],
    providers: [
       BusinesscardsService,
       WebcamService,
+      UsersService,
       AuthService,
       AuthGuard
    ],

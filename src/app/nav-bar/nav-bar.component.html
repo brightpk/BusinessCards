@@ -25,22 +25,22 @@
       </ul>
     </div>
 
+    <span *ngIf="authService.isLoggedIn()">
     <div class="right-navbar">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <!-- Dropdown for search by  -->
           <div class="btn-group">
-          <button class="search-by dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
+          <button class="search-by btn btn-dark dropdown-toggle" data-toggle="dropdown">
             Search By
           </button>
-          <div class="dropdown-menu choices" aria-labelledby="dropdownMenuButton">
-            <button class="dropdown-item choice1" (click)="searchBy='firstname&company'" [ngClass]="{choice1: searchBy=='firstname&company'}">
-              FirstnameCompany</button>
-            <button class="dropdown-item choice2" (click)="searchBy='firstname'" [ngClass]="{choice2: searchBy=='firstname'}">
-              Firstname</button>
-            <button class="dropdown-item choice3" (click)="searchBy='company'" [ngClass]="{choice3: searchBy=='company'}">
-              Company</button>
+          <div class="dropdown-menu choices" role="menu">
+              <li><a href="#" class="dropdown-item choice1" (click)="onSearchBy($event, 1)" [ngClass]="{choice1: searchBy=='firstname&company'}">
+              Firstname&Company</a></li>
+            <li><a href="#" class="dropdown-item choice2" (click)="onSearchBy($event, 2)" [ngClass]="{choice2: searchBy=='firstname'}">
+              Firstname</a></li>
+              <li><a href="#" class="dropdown-item choice3" (click)="onSearchBy($event, 3)" [ngClass]="{choice3: searchBy=='company'}">
+              Company</a></li>
           </div>
         </div>
         <span class="search-form btn-group" >
@@ -51,19 +51,19 @@
         </li>
 
         <li>
-          <span *ngIf="authService.isLoggedIn()">
-            <app-logout></app-logout>
-          </span>
+          <div style="color: white; margin-top: 8px;">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" style="right: 0; left: auto; width: 7rem;">
+              <app-logout></app-logout>
+            </div>
+          </div>
+
         </li>
       </ul>
     </div>
-
-    <!-- <span class="nav-item search-control">
-      Search 
-      <i class="fa fa-search search-icon" aria-hidden="true"></i>
-    </span> -->
-    <!-- <span *ngIf="authService.isLoggedIn()">
-      <app-logout></app-logout>
-    </span> -->
+    </span>
+    
   </div>
 </nav>

@@ -19,9 +19,22 @@
           </div>
           <div class="col-sm-5 mt-3">
             <h6>{{card.company}}</h6>
-            <h6>{{card.firstname}} {{card.lastname}}</h6>
-            <h6>{{card.email}}</h6>
-            <h6>{{card.phoneNumber}}</h6>
+
+            <div style="display: flex;">
+              <i class="fa fa-user" aria-hidden="true" style="font-size: 20px; margin-right: 5px;"></i>
+              <h6>{{card.firstname}} {{card.lastname}}</h6>
+            </div>
+
+            <div style="display: flex;">
+              <i class="fa fa-envelope" aria-hidden="true" style="font-size: 15px; margin-right: 5px; margin-top: 3px;"></i>
+              <h6>{{card.email}}</h6>
+            </div>
+
+            <div style="display: flex;">
+              <i class="fa fa-mobile" aria-hidden="true" style="font-size: 25px; margin-right: 5px;"></i>
+              <h6 style="margin-top: 2px;">  {{card.phoneNumber}}</h6>
+            </div>
+
           </div>
         </div>
       </div>
@@ -36,7 +49,7 @@
         <i class="fa fa-image"></i>
         Preview Image
       </button>
-      <button class="btn btn-success mr-2"  (click)="openEditDialog(card)"> <!--(click)="openEditForm(this.card)"-->
+      <button class="btn btn-success mr-2"  (click)="openEditDialog(card)"> 
         <i class="fa fa-edit"></i>
         Edit
       </button>

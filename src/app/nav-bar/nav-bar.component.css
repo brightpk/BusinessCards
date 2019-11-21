@@ -34,8 +34,14 @@ input {
 }
 
 .choice1, .choice2, .choice3 {
-  background: #28a745;
+  background: #1d2124;
   color: white;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  color: white;
+  text-decoration: none;
+  background-color: #a8a8a8;
 }
 
 .search-button {
@@ -54,14 +60,3 @@ input {
   color: grey;
   opacity: 1; /* Firefox */
 }
-
-
-/* .search-for, p {
-  margin-top: 10px;
-}
-
-.search-form:hover p {
-  background-color: transparent;
-  color: #bbb;
-} */
-
