@@ -62,7 +62,10 @@
             </div>
             <div class="phone-form">
               <label class="control-label text-success" for="phoneNumber">Phone Number</label>
-              <input class="form-control" placeholder="phone number" [(ngModel)]="businessCard.phoneNumber" name="phoneNumber">
+              <input class="form-control" placeholder="phone number" required [(ngModel)]="businessCard.phoneNumber" name="phoneNumber" #phoneNumber="ngModel">
+              <div class="text-danger small"
+              *ngIf="phoneNumber.errors?.required && (phoneNumber.dirty || phoneNumber.touched)">
+              Phone number is required</div>
             </div>
           </div>
   

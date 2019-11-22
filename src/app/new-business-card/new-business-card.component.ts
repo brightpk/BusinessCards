@@ -5,6 +5,7 @@ import { Businesscard } from '../models/businesscard.model';
 import { MatSnackBar } from '@angular/material';
 import { isNumber } from 'util';
 import { WebcamService } from '../services/webcam.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-business-card',
@@ -24,7 +25,8 @@ export class NewBusinessCardComponent implements OnInit {
   constructor(
     private webcamService: WebcamService,
     private businessCardsService: BusinesscardsService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit() {
     // this.businessCardForm = this.formBuilder.group({
@@ -76,6 +78,7 @@ export class NewBusinessCardComponent implements OnInit {
         this.submitted = false;
         this.loading = false;
         this.openSnackBar('Successfully ADDED!', 'x', 5000 );
+        this.router.navigate(['/business-cards']);
       })
       .catch(err => {
         console.log('Fail to ADD a new business card :(');

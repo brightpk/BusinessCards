@@ -7,6 +7,7 @@ import { BusinessCardsComponent } from './business-cards/business-cards.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NewBusinessCardComponent } from './new-business-card/new-business-card.component';
 import { SearchBusinessCardsComponent } from './search-business-cards/search-business-cards.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,7 +20,9 @@ const routes: Routes = [
     component: SearchBusinessCardsComponent,
     canActivate: [ AuthGuard ],
     runGuardsAndResolvers: 'always'
-  }
+  },
+  
+  { path: '**', component: PageNotFoundComponent }
 
 ];
 

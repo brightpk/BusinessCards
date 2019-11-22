@@ -4,39 +4,52 @@
   <button class="closeEdit">&times;</button>
 </div>
 
+<form [formGroup]="cardFormGroup">
 <div class="business-card-form">
   <div style="width: 410px;">
     <label class="control-label text-success" for="image">Organization </label>
-    <input class="form-control mr-2" placeholder="image" [(ngModel)]="card.company">
+    <input class="form-control mr-2" placeholder="image" formControlName="company">
   </div>
 </div>
 
 <div class="business-card-form mt-3">
   <div class="firstname-form pr-3">
     <label class="control-label text-success" for="firstname">Firstname</label>
-    <input class="form-control mr-2" placeholder="firstname" [(ngModel)]="card.firstname">
-  </div>
+    <input class="form-control mr-2" placeholder="firstname" formControlName="firstname">
+    <div class="text-danger small"
+      *ngIf="cardFormGroup.get('firstname').hasError('required') && cardFormGroup.get('firstname').touched">
+      Firstname is required</div>
+    </div>
   <div class="lastname-form">
     <label class="control-label text-success" for="lastname">Lastname</label>
-    <input class="form-control" placeholder="lastname" [(ngModel)]="card.lastname">
+    <input class="form-control" placeholder="lastname" formControlName="lastname">
+    <div class="text-danger small"
+      *ngIf="cardFormGroup.get('lastname').hasError('required') && cardFormGroup.get('lastname').touched">
+      Lastname is required</div>
   </div>
 </div>
 
 <div class="business-card-form">
   <div class="email-form pr-3">
     <label class="control-label text-success" for="email">Email </label>
-    <input class="form-control mr-2" placeholder="email" [(ngModel)]="card.email">
+    <input class="form-control mr-2" placeholder="email" formControlName="email">
+    <div class="text-danger small"
+      *ngIf="cardFormGroup.get('email').hasError('required') && cardFormGroup.get('email').touched">
+      Email is required</div>
   </div>
   <div class="phone-form">
     <label class="control-label text-success" for="phoneNumber">Phone Number</label>
-    <input class="form-control" placeholder="phone number" [(ngModel)]="card.phoneNumber">
+    <input class="form-control" placeholder="phone number" formControlName="phoneNumber">
+    <div class="text-danger small"
+      *ngIf="cardFormGroup.get('phoneNumber').hasError('required') && cardFormGroup.get('phoneNumber').touched">
+      Phone number is required</div>
   </div>
 </div>
 
 <div class="business-card-form">
   <div style="width: 310px;">
     <label class="control-label text-success" for="image">Business Card Image </label>
-    <input class="form-control mr-2" placeholder="image" [(ngModel)]="card.image">
+    <input class="form-control mr-2" placeholder="image" formControlName="image">
   </div>
   <div style="margin-top: 32px; margin-left: 10px;">
     <button class="btn btn-outline-success" (click)="openWebcam(card)">
@@ -46,8 +59,10 @@
 
 <div mat-dialog-actions class="confirm-buttons">
   <button mat-raised-button (click)="onNoClick()">Cancel</button>
-  <button mat-raised-button class="update-button" [mat-dialog-close]="card" cdkFocusInitial>Update</button>
+  <button mat-raised-button class="update-button" (click)="onSubmit()" cdkFocusInitial>Update</button>
 </div>
+
+</form>
 
 <div class=" webcam-edit" align="center" *ngIf="onWebcam">
  <span class="closeCam" (click)="closeWebcam()"
