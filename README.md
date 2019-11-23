@@ -1,6 +1,6 @@
 # Final Project: Business Cards app
 
-## Firbase host name
+## Firebase host name
 
 https://businesscards-app.firebaseapp.com/
 
