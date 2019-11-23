@@ -1,27 +1,43 @@
-# BusinessCards
+# Final Project: Business Cards app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.17.
+## Firbase host name
 
-## Development server
+https://businesscards-app.firebaseapp.com/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Github full url to the source code
 
-## Code scaffolding
+https://github.com/brightpk/businesscards
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Road blocks and challenges
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The final project is completed. 
+All featues work: 
+- Add / Update / Delete business cards
+- Take a snapshot of a business card and generate the info 
+- Sign in and sign out 
+- Edit user information
+The challenge would be searching and populating appropriate information from text detection from cloudvision. 
 
-## Running unit tests
+## Instructions
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Go to https://businesscards-app.firebaseapp.com/
+2. Sign in -> username: chandlergegg@gmail.com Password: 5DeepBreaths!
+3. If you're logged in, Profile page would pop up
+4. Click on navigation bar to navigate to appropiate pages 
+5. To add a new business card, click "Add card" button on Business Cards page or "Add Business Card" on navigation bar
+6. Click "WebCam" to open the camera and take a shopshot of your business card and confirm by clicking "Use this image" or click "Cancel" if you wish to retake it. 
+7. After confirmation, app will populate information into fields (You may adjust info. if needed)
+8. Click "Add" and if the card is successfully added, it will direct you to Business Cards page and show all cards (including new cards);
+9. To edit a new business card, click "edit" and modify any information
+10. To delete a business card, simply by clicking "Delete"
+11. To preview image of a snapshot, click "Preview Image" 
+12. To search for business cards, select "Search By" and choose one of 3 options (Firstname&Company, Firstname, Company)
+13. Type what you are looking for and press enter or click on the search icon
+14. If you wish to edit user information, simply by going to Profile page and click on "Setting" on the top right of Welcome box. Select edit user info.
 
-## Running end-to-end tests
+Notes: if you close the broswer and never sign out, you're still logged in when you come back to the page! So make sure to log out! 
+ 
+## Estimate of time spent on homework
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1-2 weeks
