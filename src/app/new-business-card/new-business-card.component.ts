@@ -75,9 +75,9 @@ export class NewBusinessCardComponent implements OnInit {
       this.businessCardsService.addBusinessCard(this.businessCard)
       .then(res => {
         console.log('Successfully ADDED!');
+        this.openSnackBar('Successfully ADDED!', 'x', 5000 );
         this.submitted = false;
         this.loading = false;
-        this.openSnackBar('Successfully ADDED!', 'x', 5000 );
         this.router.navigate(['/business-cards']);
       })
       .catch(err => {
