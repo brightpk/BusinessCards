@@ -70,8 +70,15 @@ export class BusinessCardEditDialogComponent implements OnInit {
     this.editCard = this.webcamService.getDataFields(textDetection);
     this.editCard.id = cardID;
     this.editCard.image = this.imageBase64;
-    // this.card = this.editCard;
-    this.cardFormGroup = this.editCard;
+    this.cardFormGroup = this.formBuilder.group({
+      id: this.card.id,
+      company: this.editCard.company,
+      firstname: [this.editCard.firstname, Validators.required],
+      lastname: [this.editCard.lastname, Validators.required],
+      email: [this.editCard.email, Validators.required],
+      phoneNumber: [this.editCard.phoneNumber, Validators.required],
+      image: this.editCard.image
+    });
     this.closeWebcam();
   }
 

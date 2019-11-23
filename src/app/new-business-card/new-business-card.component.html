@@ -24,9 +24,6 @@
                 <button class="btn btn-outline-success" (click)="toggleWebcam()">Webcam</button>
               </div>
           </div>
-          <!-- <div *ngIf="businessCard.cardImage">
-              <img [src]="businessCard.image" alt="BusinessCardImage" style="width:405px; height:250px; margin-left: 40px;">
-            </div> -->
 
           <div class="form-group business-card-form">
             <div style="width: 410px;">
@@ -85,35 +82,6 @@
       (imageBase64)="receiveWebcamImage($event)" 
       (textDetection)="receiveTextDetection($event)"
       (loading)="isLoading($event)"></app-web-cam>
-      <!-- Take a snapshot -->
-      <!-- <div class="form-group snapshot-form">
-                <div style="width: 305px;">
-                  <label class="control-label text-success" for="image">Image </label>
-                  <input class="form-control mr-2" placeholder="image" formControlName="image">
-                </div>
-                <div class="formgroup" style="margin-top: 32px; margin-left: 10px;">
-                  <button class="btn btn-outline-success">Snapshot</button>
-                </div>
-              </div> -->
-  
-  
-      <!-- <div class="card" style="max-width: 500px; height: 237px; margin-top: 10px">
-            <div class="row">
-              <div class="col-sm-4">
-                <span *ngIf="this.businessCardForm.value.image==''; else useRealImage">
-                  <img src="/assets/images/user.png" id="user-image" style="border: solid 1px lightgray;">
-                </span>
-                <ng-template #useRealImage>
-                  <img src="{{businessCardForm.value.image}}" id="user-image">
-                </ng-template>
-              </div>
-              <div class="col-sm-7 mt-5 mr-3 ml-3">
-                <h5>{{businessCardForm.value.firstname}} {{businessCardForm.value.lastname}}</h5>
-                <h5>{{businessCardForm.value.email}}</h5>
-                <h5>{{businessCardForm.value.phoneNumber}}</h5>
-              </div>
-            </div> 
-          </div> -->
     </div>
   
   </div>

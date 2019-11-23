@@ -2,7 +2,7 @@ import { map } from 'rxjs/operators';
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { BusinesscardsService } from '../services/businesscards.service';
 import { Businesscard } from '../models/businesscard.model';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-business-cards',
@@ -24,14 +24,6 @@ export class BusinessCardsComponent implements OnInit, OnChanges {
       try {
         this.businessCards = changes.foundBusinessCardsList.currentValue;
       } catch (error) {}
-
-      // if (this.searchFor === undefined && changes.foundBusinessCardsList.currentValue === undefined) {
-      //   this.businessCards = [];
-      // } else if (this.searchFor !== undefined && this.searchFor !== this.prevSearch) {
-      //   console.log('Curr now: ' + changes.foundBusinessCardsList.currentValue);
-      //   this.businessCards = changes.foundBusinessCardsList.currentValue;
-      //   this.prevSearch = this.searchFor;
-      // }
   }
 
   ngOnInit() {

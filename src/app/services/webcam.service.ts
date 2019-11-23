@@ -38,17 +38,20 @@ export class WebcamService {
     console.log(obj);
 
     if (obj[0].description.includes('Company') || obj[0].description.includes('company') ||
-        obj[0].description.includes('Organization') || obj[0].description.includes('organization')) {
+        obj[0].description.includes('Organization') || obj[0].description.includes('organization') ||
+        obj[0].description.includes('University') || obj[0].description.includes('university')) {
           for (let i = 1; i < len; i++) {
             const info = obj[i].description;
             if (info.includes('@')) {
               this.businessCard.email = info;
             } else if (numbers.test(info)) {
               this.businessCard.phoneNumber = info;
-            } else if (info.includes('Company') || info.includes('Organization')) {
-              this.businessCard.company = `${obj[i - 1].description} ${info}`;
-              indexCom = i;
-              console.log(indexCom);
+            } else if (info.includes('Company') || info.includes('company') ||
+                        info.includes('Organization') || info.includes('organization') ||
+                        info.includes('University') || info.includes('university')) {
+                          this.businessCard.company = `${obj[i - 1].description} ${info}`;
+                          indexCom = i;
+                          console.log(indexCom);
             } else if (upperCase.test(info.charAt(0)) && i > 1 && i === indexCom + 1) {
               console.log(`i = ${i} indexCom = ${indexCom}`);
               this.businessCard.firstname = info;

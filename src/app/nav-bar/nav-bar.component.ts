@@ -19,23 +19,13 @@ export class NavBarComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private businessCardsService: BusinesscardsService) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.searchFor = new FormControl('');
     this.searchBy = 'firstname&company';
     this.foundCardsList = [];
 
-    // this.businessCardsService.getBusinessCardsCollection().snapshotChanges()
-    // .pipe(map(changes =>
-    //   changes.map(c =>
-    //     ({id: c.payload.doc.id, ...c.payload.doc.data()})
-    //     )
-    //   )
-    // ).subscribe(card => {
-    //   this.businessCards = card;
-    // });
   }
 
   search() {

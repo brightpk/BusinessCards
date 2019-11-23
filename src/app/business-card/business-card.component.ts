@@ -17,10 +17,7 @@ export class BusinessCardComponent implements OnInit {
 
 
   selectedCard: Businesscard;
-  // imageBase64: string;
   onPreview: boolean;
-  // onWebcam: boolean;
-  // closeForm: boolean;
   loading: boolean;
 
   constructor(
@@ -31,10 +28,7 @@ export class BusinessCardComponent implements OnInit {
 
   ngOnInit() {
     this.selectedCard = new Businesscard();
-    // this.imageBase64 = '';
     this.onPreview = false;
-    // this.onWebcam = false;
-    // this.closeForm = true;
   }
 
 
