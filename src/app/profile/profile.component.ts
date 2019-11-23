@@ -1,18 +1,20 @@
 import { UsersService } from './../services/users.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from '../models/user.model';
 import { map } from 'rxjs/operators';
 import { MatDialogConfig, MatDialog, MatSnackBar } from '@angular/material';
 import { UserEditDialogComponent } from '../user-edit-dialog/user-edit-dialog.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   user: User;
   loading: boolean;
+  subscription: Subscription;
 
   constructor(
     private userSerivce: UsersService,
@@ -20,8 +22,14 @@ export class ProfileComponent implements OnInit {
     private snackBar: MatSnackBar) {}
 
   ngOnInit() {
+    this.subscription = new Subscription();
     this.user = new User();
     this.getUsers();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    console.log('ngOnDestroy profile');
   }
 
   openSnackBar(msg: string, action: string, time?: number) {
@@ -29,7 +37,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getUsers() {
-    this.userSerivce.usersCollection.snapshotChanges()
+    const subscription = this.userSerivce.usersCollection.snapshotChanges()
     .pipe(map(changes =>
       changes.map(c =>
         ({id: c.payload.doc.id, ...c.payload.doc.data()})
@@ -38,6 +46,8 @@ export class ProfileComponent implements OnInit {
     ).subscribe(user => {
       this.user = user[0];
     });
+
+    this.subscription.add(subscription);
   }
 
   update(user) {
@@ -66,11 +76,13 @@ export class ProfileComponent implements OnInit {
     dialogConfig.data = user;
     const dialogRef = this.dialog.open(UserEditDialogComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(res => {
+    const subscription =  dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.update(res);
       }
     });
+
+    this.subscription.add(subscription);
   }
 
 

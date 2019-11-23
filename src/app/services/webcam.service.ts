@@ -35,7 +35,7 @@ export class WebcamService {
     const lowerCase = /^[a-z]/;
     let indexCom = 0;
     let indexFname = 0;
-    console.log(obj);
+    // console.log(obj);
 
     if (obj[0].description.includes('Company') || obj[0].description.includes('company') ||
         obj[0].description.includes('Organization') || obj[0].description.includes('organization') ||
@@ -51,9 +51,9 @@ export class WebcamService {
                         info.includes('University') || info.includes('university')) {
                           this.businessCard.company = `${obj[i - 1].description} ${info}`;
                           indexCom = i;
-                          console.log(indexCom);
+                          // console.log(indexCom);
             } else if (upperCase.test(info.charAt(0)) && i > 1 && i === indexCom + 1) {
-              console.log(`i = ${i} indexCom = ${indexCom}`);
+              // console.log(`i = ${i} indexCom = ${indexCom}`);
               this.businessCard.firstname = info;
               indexFname = i;
             } else if (upperCase.test(info.charAt(0)) && i === indexFname + 1) {

@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BusinesscardsService } from '../services/businesscards.service';
 import { Businesscard } from '../models/businesscard.model';
 import { map, filter } from 'rxjs/operators';
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search-business-cards',
   templateUrl: './search-business-cards.component.html',
   styleUrls: ['./search-business-cards.component.css']
 })
-export class SearchBusinessCardsComponent implements OnInit {
+export class SearchBusinessCardsComponent implements OnInit, OnDestroy {
   foundBusinessCardsList: Businesscard[];
   tmpBusinessCards: Businesscard[];
   searchFor: string;
   searchBy: string;
   length: number;
+  subscription: Subscription;
 
   constructor(
     private businessCardsService: BusinesscardsService,
@@ -23,7 +25,9 @@ export class SearchBusinessCardsComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.activatedRoute.url.subscribe(url => {
+    this.subscription = new Subscription();
+
+    const subscription = this.activatedRoute.url.subscribe(url => {
       this.activatedRoute.paramMap.subscribe(param => {
         this.searchBy = param.get('searchBy');
         this.searchFor = param.get('searchFor');
@@ -32,10 +36,17 @@ export class SearchBusinessCardsComponent implements OnInit {
       this.findBusinessCards();
     });
 
+    this.subscription.add(subscription);
+
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    console.log('ngOnDestroy search-cards');
   }
 
   findBusinessCards() {
-    this.businessCardsService.getBusinessCardsCollection().snapshotChanges()
+    const subscription = this.businessCardsService.getBusinessCardsCollection().snapshotChanges()
     .pipe(map(changes =>
       changes.map(c =>
         ({id: c.payload.doc.id, ...c.payload.doc.data()})
@@ -56,6 +67,8 @@ export class SearchBusinessCardsComponent implements OnInit {
         this.findByFirstnameAndCompany();
       }
     });
+
+    this.subscription.add(subscription);
   }
 
 
@@ -66,7 +79,6 @@ export class SearchBusinessCardsComponent implements OnInit {
       }
     }
     this.length = this.foundBusinessCardsList.length;
-    console.log('searchByFIRSTNAME: ' + this.foundBusinessCardsList);
 
   }
 
@@ -80,7 +92,6 @@ export class SearchBusinessCardsComponent implements OnInit {
       }
     }
     this.length = this.foundBusinessCardsList.length;
-    console.log('searchByCOMPANY: ' + this.foundBusinessCardsList[0].company);
   }
 
   findByFirstnameAndCompany() {
@@ -97,7 +108,6 @@ export class SearchBusinessCardsComponent implements OnInit {
       }
     }
     this.length = this.foundBusinessCardsList.length;
-    console.log('searchBOTH: ' + this.foundBusinessCardsList);
   }
 
 }

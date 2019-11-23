@@ -1,20 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Businesscard } from '../models/businesscard.model';
 import { BusinesscardsService } from '../services/businesscards.service';
 import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { WebcamService } from '../services/webcam.service';
 import { BusinessCardEditDialogComponent } from '../business-card-edit-dialog/business-card-edit-dialog.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-business-card',
   templateUrl: './business-card.component.html',
   styleUrls: ['./business-card.component.css']
 })
-export class BusinessCardComponent implements OnInit {
+export class BusinessCardComponent implements OnInit, OnDestroy {
   @Input() businessCards: Businesscard[];
   cardList: Businesscard[];
-
+  subscription: Subscription;
 
   selectedCard: Businesscard;
   onPreview: boolean;
@@ -27,8 +28,14 @@ export class BusinessCardComponent implements OnInit {
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.subscription = new Subscription();
     this.selectedCard = new Businesscard();
     this.onPreview = false;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    console.log('ngOnDestroy business card');
   }
 
 
@@ -87,12 +94,14 @@ export class BusinessCardComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(res => {
+    const subscription = dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.delete(card);
         console.log(`Deleted ${card.firstname} ${card.lastname}`);
       }
     });
+
+    this.subscription.add(subscription);
   }
 
   openEditDialog(card): void {
@@ -104,11 +113,13 @@ export class BusinessCardComponent implements OnInit {
 
     const dialogRef = this.dialog.open(BusinessCardEditDialogComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(res => {
+    const subscription = dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.update(res);
       }
     });
+
+    this.subscription.add(subscription);
   }
 
 }

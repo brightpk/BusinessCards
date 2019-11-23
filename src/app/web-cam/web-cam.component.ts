@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Subject, Observable, Subscription } from 'rxjs';
 import { WebcamImage } from 'ngx-webcam/src/app/modules/webcam/domain/webcam-image';
 import { WebcamInitError } from 'ngx-webcam/src/app/modules/webcam/domain/webcam-init-error';
 
@@ -11,11 +11,12 @@ import { WebcamService } from '../services/webcam.service';
   templateUrl: './web-cam.component.html',
   styleUrls: ['./web-cam.component.css']
 })
-export class WebCamComponent implements OnInit {
+export class WebCamComponent implements OnInit, OnDestroy {
   @Output() imageBase64 = new EventEmitter();
   @Output() textDetection = new EventEmitter();
   @Output() loading = new EventEmitter<boolean>();
   loadingPage: boolean;
+  subscription: Subscription;
 
   public webcamImage: WebcamImage = null;    // latest snapshot
   private trigger: Subject<void> = new Subject<void>();   // webcam snapshot trigger
@@ -25,6 +26,13 @@ export class WebCamComponent implements OnInit {
 
   ngOnInit() {
     this.loadingPage = false;
+    this.subscription = new Subscription();
+
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    console.log('ngOnDestroy web-cam');
   }
 
   public triggerSnapshot(): void {
@@ -48,14 +56,15 @@ export class WebCamComponent implements OnInit {
   }
 
   convertToBase64() {
+    let subscription;
     this.loading.emit(true);
     const imgNode = document.getElementById('image');
-    console.log(imgNode);
+    // console.log(imgNode);
     domtoimage.toPng(imgNode)
     .then( (dataUrl: string) => {
       console.log('converting base64...');
       this.imageBase64.emit(dataUrl);
-      this.webcamService.getTextDetection(dataUrl)
+      subscription = this.webcamService.getTextDetection(dataUrl)
       .subscribe(res => {
         this.textDetection.emit(res);
         this.loading.emit(false);
@@ -67,9 +76,11 @@ export class WebCamComponent implements OnInit {
 
     }).catch( (e: any) => {
       console.log('SELECTED IMAGE BASE64 SOMETHING WENT WRONG');
-      console.log(e);
+      // console.log(e);
       this.loading.emit(false);
     });
+
+    this.subscription.add(subscription);
   }
 
 }
